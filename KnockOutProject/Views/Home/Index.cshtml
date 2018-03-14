@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "KO Project";
+}
+
+<br />
+<h4>Your Team Name: &nbsp; <input data-bind="value: teamName" /></h4>
+<table>
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First name</th>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last name</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Position</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: players">
+        <tr>
+            <td><input size="3" data-bind="value: number" /></td>
+            <td><input size="12" data-bind="value: firstName" /></td>
+            <td><input size="12" data-bind="value: lastName" /></td>
+            <td><input size="3" data-bind="value: weight" /></td>
+            <td><select data-bind="options: $root.availableHeights, value: height, optionsText: 'vHeight'"></select></td>
+            <td><select data-bind="options: $root.availablePositions, value: position, optionsText: 'position'"></select></td>
+            <td><a href="#" data-bind="click: $root.removePlayer">Remove</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<button data-bind="click: addPlayer, enable: players().length < 10">Add another player</button>
+<br />
+<h4 data-bind="visible: players().length > 1">Your roster currently has <span data-bind="text: players().length"></span> players</h4>
+<br />
+<h1><label data-bind="text: teamName" class="nav-justified" /></h1>
+<table>
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name</th>
+            <th class="col-lg-2">Height</th>
+            <th class="col-lg-2">Weight</th>
+            <th class="col-lg-2">Position</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: players">
+        <tr>
+            <td><label data-bind="text: number" class="col-sm-offset-2" /></td>
+            <td><label data-bind="text: fullName" /></td>
+            <td><label data-bind="text: selectedHeight" class="col-sm-offset-4" /></td>
+            <td><label data-bind="text: weight" class="col-sm-offset-4" /></td>
+            <td><label data-bind="text: selectedPosition"class="col-sm-offset-3" /></td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="~/Models/ViewModel.js"></script>
